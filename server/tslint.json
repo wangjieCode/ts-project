@@ -1,0 +1,18 @@
+{
+		"defaultSeverity": "warn",
+		//继承其他的tslint配置，默认继承tslint推荐
+    "extends": [
+        "tslint:recommended"
+		],
+		//js文件相关配置
+		"jsRules": {},
+		//验证规则
+		"rules": {
+			"no-console": false,
+			"arrow-parens": false,
+			"indent":false,
+			"ordered-imports":false
+		},
+		//其他位置的tslint配置规则
+    "rulesDirectory": []
+}

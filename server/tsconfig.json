@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "commonjs",
+		"outDir": "./dist",
+		//开启实验性质的装饰器
+		"experimentalDecorators": true,
+		//装饰器作为源代码编译
+		"emitDecoratorMetadata": true,
+		"strictNullChecks": true,
+		"removeComments": true,
+		"noEmitOnError": true,
+		"lib": ["esnext"]
+	},
+	"include": ["./src"]
+}
