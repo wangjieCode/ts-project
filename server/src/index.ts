@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { validate } from "class-validator";
 import Movie from "./entities/Movie";
 import { plainToClass } from "class-transformer";
