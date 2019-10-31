@@ -1,10 +1,10 @@
-import { ArrayMinSize, IsInt, IsNotEmpty, Max, Min, IsArray } from "class-validator";
+import { ArrayMinSize, validate, IsInt, IsNotEmpty, Max, Min, IsArray } from "class-validator";
 import { Type } from "class-transformer";
 
 /**
  * 电影模板
  */
-export default class Movie {
+export class MovieType {
 	// 名称
 	@IsNotEmpty({ message: "电影名称不能为空" })
 	@Type(() => String)
@@ -19,7 +19,7 @@ export default class Movie {
 
 	// 地区
 	@Type(() => String)
-	@IsArray({message: "上映地区必须为数组"})
+	@IsArray({ message: "上映地区必须为数组" })
 	@ArrayMinSize(1, { message: "上映地区类型未选择" })
 	@IsNotEmpty({ message: "上映地区不能为空" })
 	public areas: string[];
@@ -54,4 +54,5 @@ export default class Movie {
 	// 图片
 	@Type(() => String)
 	public poster?: string;
+
 }

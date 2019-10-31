@@ -10,6 +10,8 @@
 		"strictNullChecks": true,
 		"removeComments": true,
 		"noEmitOnError": true,
+		//转化commonjs规范的导出方式
+		"esModuleInterop": true,
 		"lib": ["esnext"]
 	},
 	"include": ["./src"]
