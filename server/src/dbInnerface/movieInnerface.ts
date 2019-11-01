@@ -1,6 +1,7 @@
 import Movie from "../entities/Movie/Movie";
 import { movieDB } from "../db/MovieSchema";
 import { MovieModel } from "../db";
+import { seachMovie } from "./seachMovie";
 
 export async function addMovie(movie: Movie): Promise<string[] | movieDB> {
 	const temp = Movie.tranfromPlain(movie);
@@ -32,4 +33,26 @@ export async function remove(id: string): Promise<object> {
 }
 export async function findById(id: string): Promise<Movie | null> {
 	return MovieModel.findById({ _id: id });
+}
+/**
+ * 
+ * @param temp page，limt，key
+ */
+export async function find(option: seachMovie): Promise<{ data: movieDB[], count: number } | string[]> {
+	const temp = seachMovie.transfrom(option);
+	const result = await temp.toValidate();
+	if (result.length > 0) {
+		return result;
+	}
+	const movieDb = await MovieModel.find({
+		name: { $regex: new RegExp(temp.key) },
+	}).skip((temp.start - 1) * temp.limit)
+		.limit(temp.limit); // 跳过数据查找
+	const count = await MovieModel.find({
+		name: { $regex: new RegExp(temp.key) },
+	}).countDocuments();
+	return {
+		data: movieDb,
+		count,
+	};
 }
