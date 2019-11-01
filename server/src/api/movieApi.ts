@@ -1,6 +1,6 @@
 import Express from "express";
-import { Response, Request } from "express-serve-static-core";
-import { findById, find, addMovie } from "../dbInnerface/movieInnerface";
+import { Response } from "express-serve-static-core";
+import { findById, find, addMovie, editMovie, remove } from "../dbInnerface/movieInnerface";
 import { ResTempent } from "./ResposeTempent";
 
 const movie = Express.Router();
@@ -24,13 +24,34 @@ movie.get("/", async (request, response: Response) => {
 });
 
 movie.post("/", async (request, response: Response) => {
-	console.log(request.body)
 	const reslut = await addMovie(request.body);
-	console.log(reslut)
 	if (Array.isArray(reslut)) {
 		ResTempent.sendError(reslut, response);
 	} else {
 		ResTempent.sendData(reslut, response);
+	}
+});
+
+movie.put("/:id", async (request, response: Response) => {
+	const id = request.params.id;
+	try {
+		const result = await editMovie(id, request.body);
+		if (Array.isArray(result)) {
+			ResTempent.sendError(result, response);
+		} else {
+			ResTempent.sendData("ok", response);
+		}
+	} catch (error) {
+		ResTempent.sendError("id error", response);
+	}
+});
+
+movie.delete("/:id", async (res, rep) => {
+	try {
+		await remove(res.params.id);
+		ResTempent.sendData("ok", rep);
+	} catch (error) {
+		ResTempent.sendError("id error", rep);
 	}
 });
 
