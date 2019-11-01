@@ -13,8 +13,8 @@
 export function chank(arr: any[]): string[] {
 	const newArr: any = [];
 	arr.forEach(ele => {
-		if (ele instanceof Array) {
-			chank(ele);
+		if (Array.isArray(ele)) {
+			newArr.push(...ele);
 		} else {
 			newArr.push(ele);
 		}

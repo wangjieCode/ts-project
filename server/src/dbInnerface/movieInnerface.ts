@@ -35,7 +35,6 @@ export async function findById(id: string): Promise<Movie | null> {
 	return MovieModel.findById({ _id: id });
 }
 /**
- * 
  * @param temp page，limt，key
  */
 export async function find(option: seachMovie): Promise<{ data: movieDB[], count: number } | string[]> {
