@@ -10,3 +10,15 @@ ReactDOM.render(<App />, document.getElementById('root'));
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+// const result = MovieService.add({
+// 	name: "wangjie",
+// 	types: ["戏剧","王杰"],
+// 	timeLong: 120,
+// 	isHot: false,
+// 	isClassic:false,
+// 	isComing: false,
+// 	areas: ["北京","上海"]
+// })
+
+// console.log(result)
